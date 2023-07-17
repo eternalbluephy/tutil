@@ -10,7 +10,14 @@ void getTermSize(int *w, int *h)
 	*h = size.ws_row;
 }
 #endif
-
+#include <Windows.h>
+void getTermSize(int *w, int *h)
+{
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+	w = (int)(csbi.srWindow.Right - csbi.srWindow.Left + 1);
+	h = (int)(csbi.srWindow.Bottom - csbi.srWindow.Top + 1);
+}
 #ifdef _WIN32
 
 #endif
