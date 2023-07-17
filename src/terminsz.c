@@ -10,6 +10,7 @@ void getTermSize(int *w, int *h)
 	*h = size.ws_row;
 }
 #endif
+#ifdef _WIN32
 #include <Windows.h>
 void getTermSize(int *w, int *h)
 {
@@ -18,6 +19,4 @@ void getTermSize(int *w, int *h)
 	w = (int)(csbi.srWindow.Right - csbi.srWindow.Left + 1);
 	h = (int)(csbi.srWindow.Bottom - csbi.srWindow.Top + 1);
 }
-#ifdef _WIN32
-
 #endif
